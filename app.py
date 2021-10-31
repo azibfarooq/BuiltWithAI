@@ -33,7 +33,7 @@ def index():
 @app.route("/submit_parent_checkin_survey", methods=["POST"])
 def submit_parent_checkin_survey():
     parents_survey_data[CURRENT_STUDENT] = dict(request.form)
-    print(parents_survey_data[CURRENT_STUDENT])
-    return str(request.form)
+    print(parents_survey_data)
+    return str(request.form) + str(request.args)
 
 app.run(debug=True)
