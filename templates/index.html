@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+
+<body>
+  <!-- <div class="alert alert-primary border text-center" style="height: 3rem;" role="alert">
+    <span class="closebtn justify-end" 
+    onclick="this.parentElement.style.display='none';">&times;</span>
+    MESSAGEEE
+  </div> -->
+
+  {% if get_flashed_messages() %}
+    <div class="alert alert-primary border text-center" style="height: 3rem;" role="alert">
+      <span class="closebtn justify-end"
+      style="margin-left: 15px; color: white; font-weight: bold; float: right; font-size: 22px; line-height: 20px; cursor: pointer; transition: 0.3s;" 
+       onclick="this.parentElement.style.display='none';">&times;</span>
+      {{ get_flashed_messages() | join(" ") }}
+    </div>
+  {% endif %}
+
+  <!-- <Header> -->
+  <header class="text-gray-600 body-font">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+        <img src={{ url_for('static', filename='images/Logo.png' ) }} width="200"></img>
+      </a>
+      <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+      </nav>
+      <button style="padding:10px;  margin-left:10px;" data-toggle="modal" data-target="#modal_about_us"
+      class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"><strong>About
+        Us</strong>
+      </button>
+      <button style="padding:10px;  margin-left:10px;"
+        class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"><strong>My
+          Profile</strong>
+      </button>
+      <button style="padding:10px; margin-left:10px;"
+        class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"><strong>Log
+          out</strong>
+      </button>
+    </div>
+  </header>
+
+  <!-- Modal -->
+  <div class="modal fade" id="modal_about_us" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"> About Us </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p> 
+            In 2021, Neuron Fire got started as youtube channel  to promote growth mindset through animation concepts to develop strong character for children. Now through Build with AI hackathon 2021 it is expanding its capabilities to Artificial and machine learning to help students in academic and character education.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <Mission Statement> -->
+  <section class="text-gray-600 body-font">
+    <div style="padding:0;" class="container px-10 py-24 mx-auto">
+      <div class="mb-10">
+        <div class="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4"></div>
+        <p class="text-base leading-relaxed xl:w-3/4 lg:w-3/4 mx-auto">
+        <ul>
+          <div style="margin-left: 90px; margin-right: 90px;">
+            <li>
+              <b>Mission:</b> To help students with personalized academic and character education approach while
+              avoiding one to many students approach using AI and ML predictions and recommendations to make student
+              more productive and successful.
+            </li><br>
+            <li>
+              <b>Vision:</b> To promote growth mindset to children at early ages and help students build strong
+              character along with excellent academic scores.
+            </li><br>
+            <li>
+              <b>How it works:</b> while closing the gaps among students, teachers and parents to Improve interactivity
+              and learning curve of students.
+            </li><br>
+            <li>
+          </div>
+          <div class="flex justify-center">
+            <div style="margin-left: 90px; margin-right: 90px;">
+              <li>
+                • Predicts student grades based on student previous data.
+              </li>
+              <li>
+                • AI course suggestions based on grades and student check in forms.
+              </li>
+              <li>
+                • Dashboards for 360 degrees visibility of student skill set
+              </li>
+              <li>
+                • Student-Teacher-Parent check in Surveys
+              </li>
+              <li>
+                • Lifestyle Habits check-in to predict mental health of students
+              </li>
+              <li>
+                • Student self discipline and commitment prediction based on  self study vs group study no of hours.
+              </li>
+            </div>
+          </div>
+        </ul>
+        </p>
+      </div>
+  </section>
+
+
+  <!-- <Features Section> -->
+  <section class="text-gray-600 body-font">
+    <div class="container px-2 mx-auto">
+      <div class="flex flex-col text-center w-full mb-10">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">Neuron Fire Key Features: Education Model
+          with AI</h1>
+      </div>
+      <div class="flex flex-wrap -m-4">
+        <!-- <ROW - 1> -->
+        <div class="p-4 h-96 md:w-1/3">
+          <div class="flex rounded-lg h-full bg-gray-100 p-8 pt-0 flex-col">
+            <div class="flex items-center mb-3 bg-blue-100 justify-center text-center">
+              <h2 class="text-gray-900 text-lg p-3 title-font font-medium">Academic Student Gradings</h2>
+            </div>
+            <div class="flex-grow">
+              <p class="leading-relaxed text-base leading-loose" style="line-height: 1.25rem;"><i>Based on academic
+                  grades, grades predictions and AI course recommendations are predicted.</i></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 h-96 md:w-1/3">
+          <div class="flex rounded-lg h-full bg-gray-100 p-8 pt-0 flex-col">
+            <div class="flex items-center mb-3 bg-red-100 justify-center text-center">
+              <h2 class="text-gray-900 text-lg p-3 title-font font-medium">Student View</h2>
+            </div>
+            <div class="flex-grow">
+              <p style="line-height: 1.25rem;">
+                • <u>Self Grade:</u> {{ self_grade }} %<br>
+                • <u>Grade Predictor:</u> {{ predicted_grade }} %<br>
+                • <u>Course recommendations by AI:</u>
+                {{ ", ".join(recommended_courses[:3]) }}
+                {% if recommended_courses|length > 3 %}
+                and {{ recommended_courses|length - 3}} more
+                {% endif %}
+              </p>
+              <button class="mt-3 text-indigo-500 inline-flex items-center" data-toggle="modal"
+                data-target="#modal_academic_student">
+                See More
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal_academic_student" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"> Academic Student Grading - Student View </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p> Your grade so far is: <u> {{ self_grade }} %</u> </p> <br>
+                <p> Based on your history, interests and other statistics, we predict your upcoming semester's result to
+                  be: <u> {{ predicted_grade }} %</u> </p> <br>
+                <p>
+                  Here are the courses that we recommend you focus more on:
+                <ul>
+                  {% for course in recommended_courses %}
+                  <li> > {{ course }} </li>
+                  {% endfor %}
+                </ul>
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="p-4 h-96 md:w-1/3">
+          <div class="flex rounded-lg h-full bg-gray-100 p-8 pt-0 flex-col">
+            <div class="flex items-center mb-3 bg-red-100 justify-center text-center">
+              <h2 class="text-gray-900 text-lg p-3 title-font font-medium">Teacher View</h2>
+            </div>
+            <div class="flex-grow">
+              <p class="leading-relaxed text-base leading-loose" style="line-height: 1.25rem;">
+                • <u>All students grades</u><br>
+                • <u>Grades predictions</u><br>
+                • <u>Recommendations based on overall students' performance by AI</u>
+              </p>
+              <button class="mt-3 text-indigo-500 inline-flex items-center" data-toggle="modal"
+                data-target="#modal_academic_teacher">
+                View
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal_academic_teacher" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"> Academic Student Grading - Teacher View </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <h5> <u> Students' records </u> </h5>
+                <p>
+                  {% for student in all_grades %}
+                  <u>{{ student }}</u> <br>
+                  {% for subject in subjects %}
+                  &ensp;{{ subject }}: {{ all_grades[student][subject] }} <br>
+                  {% endfor %}
+                  &ensp;<b>Current grade:</b> {{ all_grades[student]["self_grade"] }} <br>
+                  &ensp;<b>Future prediction:</b> {{ all_grades[student]["prediction"] }} <br>
+                  <br>
+                  {% endfor %}
+                </p>
+                <h5> <u>Recommendations based on overall students' performance by AI</u> </h5>
+                TODO
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <ROW - 2> -->
+        <div class="p-4 h-96 md:w-1/3">
+          <div class="flex rounded-lg h-full bg-gray-100 p-8 pt-0 flex-col">
+            <div class="flex items-center mb-3 bg-blue-100 justify-center text-center">
+              <h2 class="text-gray-900 text-lg p-3 title-font font-medium">Student Commitment and self discipline
+                prediction</h2>
+            </div>
+            <div class="flex-grow">
+              <p class="leading-relaxed text-base leading-loose" style="line-height: 1.25rem;"><i>Predicted based on
+                  students no of studying hours self study and group study</i></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 h-96 md:w-1/3">
+          <div class="flex rounded-lg h-full bg-gray-100 p-8 pt-0 flex-col">
+            <div class="flex items-center mb-3 bg-red-100 justify-center text-center">
+              <h2 class="text-gray-900 text-lg p-3 title-font font-medium">Student View</h2>
+            </div>
+            <div class="flex-grow">
+              <p class="leading-relaxed text-base leading-loose" style="line-height: 1.25rem;">
+              Self score dashboard
+              </p>
+              <button class="mt-3 text-indigo-500 inline-flex items-center" data-toggle="modal"
+                data-target="#modal_commitment_student">
+                View
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal_commitment_student" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"> Commitment And Self Discipline Score - Student View</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p> 
+                Based on peformance and dedication in class, our AI has given you a commitment and discipline score of:  {{ current_student.parent_satisfaction }} / 10<br><br>
+                </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+        <div class="p-4 h-96 md:w-1/3">
+          <div class="flex rounded-lg h-full bg-gray-100 p-8 pt-0 flex-col">
+            <div class="flex items-center mb-3 bg-red-100 justify-center text-center">
+              <h2 class="text-gray-900 text-lg p-3 title-font font-medium">Teacher View</h2>
+            </div>
+            <div class="flex-grow">
+              <p class="leading-relaxed text-base leading-loose" style="line-height: 1.25rem;">Overall student score dashboard</p>
+              <button class="mt-3 text-indigo-500 inline-flex items-center" data-toggle="modal"
+                data-target="#modal_academic_teacher">
+                View
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- <ROW - 3> -->
+        <div class="p-4 h-96 md:w-1/3">
+          <div class="flex rounded-lg h-full bg-gray-100 p-8 pt-0 flex-col">
+            <div class="flex items-center mb-3 bg-blue-100 justify-center text-center">
+              <h2 class="text-gray-900 text-lg p-3 title-font font-medium">The Happy Path Predictions<br>based on
+                lifestyle habits
+                <!-- <p class="leading-relaxed text-base">based on lifestyle habits</p> -->
+              </h2>
+            </div>
+            <div class="flex-grow">
+              <p class="leading-relaxed text-base leading-loose" style="line-height: 1.25rem;"><i>Excess hours of
+                  studying<br>
+                  Extra hours of playing games(outdoor/indoor)<br>
+                  Lack of sleep<br>
+                  Low on eating / less water<br>
+                  Screen Time <br>
+                  Extracurricular Activity - Art, Music, Dance, Singing</i></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 h-96 md:w-1/3">
+          <div class="flex rounded-lg h-full bg-gray-100 p-8 pt-0 flex-col">
+            <div class="flex items-center mb-3 bg-red-100 justify-center text-center">
+              <h2 class="text-gray-900 text-lg p-3 title-font font-medium">Student View</h2>
+            </div>
+            <div class="flex-grow">
+              <p class="leading-relaxed text-base leading-loose" style="line-height: 1.25rem;">
+                Self score dashboard
+                </p>
+              <button class="mt-3 text-indigo-500 inline-flex items-center" data-toggle="modal"
+                data-target="#modal_happypath_student">
+                View
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal_happypath_student" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"> Happy Path Predictions - Student View </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Based on your qualities, traits and lifestyle our AI algorithm has given you a happy path score of:  {{ current_student.happy_path }} / 10<br><br>
+                {% if current_student.happy_path <= 5 %}
+                  It seems like you're feeling low. We suggest you try out some of the following applications:<br>
+                  <img id="healthapp1" style="height: 40px; display: inline;" src="https://play-lh.googleusercontent.com/0XA3JWGUYjC66_XVP_5al9U-XOFPA2H8-aitY2Kj9vSIPlLSdpCa0iHESAerRaGHyA=s180-rw" class="img-thumbnail">
+                  <label for="healthapp1">Depression CBT Self-Help Guide</label>
+                  <br>
+                  <img id="healthapp2" style="height: 40px; display: inline;" src="https://play-lh.googleusercontent.com/Iyytdx9p8jbCfSRvGBp8_0Nm6wCAHbjhiD8gN-oL9M9qRIGS8F3JC2VsIodTVMeoCTU=s180-rw" class="img-thumbnail">
+                  <label for="healthapp2">Insight Timer - Meditation, Sleep</label>
+                  <br>
+                  <img id="healthapp3" style="height: 40px; display: inline;" src="https://mobile.va.gov/sites/default/files/image/icons/ptsdcoach300x300.png" class="img-thumbnail">
+                  <label for="healthapp3">PTSD Coach</label>
+                {% else %}
+                  Your mental well being seems to be pretty good, try to keep up your good habits as a healthy mind can help make your overall quality of life much better!<br>
+                  Some tips to keep your happy  score high is to do regular physical exercise, eat healthy, and remember to take time out for relaxation
+                {% endif %}
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="p-4 h-96 md:w-1/3">
+          <div class="flex rounded-lg h-full bg-gray-100 p-8 pt-0 flex-col">
+            <div class="flex items-center mb-3 bg-red-100 justify-center text-center">
+              <h2 class="text-gray-900 text-lg p-3 title-font font-medium">Teacher View</h2>
+            </div>
+            <div class="flex-grow">
+              <p class="leading-relaxed text-base leading-loose" style="line-height: 1.25rem;">
+                Overall student score dashboard
+                </p>
+              <button class="mt-3 text-indigo-500 inline-flex items-center" data-toggle="modal"
+                data-target="#modal_academic_teacher">
+                View
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap justify-center items-center">
+          <hr style=" width: 80%; height:0.8px;border:none;color:#333;background-color:grey;" class="flex justify-center">
+        </div>
+
+        <!-- <Checkin Surveys> -->
+        <div class="flex flex-col text-center w-full mb-10">
+          <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">Checkin Surveys
+          </h1>
+        </div>
+
+        <div class="p-4 h-96 md:w-1/3">
+          <div class="flex rounded-lg h-full bg-gray-100 p-8 pt-0 flex-col">
+            <div class="flex items-center mb-3 bg-blue-100 justify-center text-center">
+              <h2 class="text-gray-900 text-lg p-3 title-font font-medium">Student Checkin Survey</h2>
+            </div>
+            <div class="flex-grow">
+              <p class="leading-relaxed text-base leading-loose" style="line-height: 1.25rem;">
+                Student feedback about digital education and well being
+                <!-- <u>Feelings with digital education approach while studying from home</u><br> -->
+                <!-- • <u>Concerns / problems that might limit ability to engage in learning activities over the next few weeks</u> <br>
+                • <u>Ideas for low-effort & fun ways to connect </u> <br>
+                • <u>How can teachers/mentors help</u> <br> -->
+              </p>
+              <button class="mt-3 text-indigo-500 inline-flex items-center" data-toggle="modal"
+                data-target="#modal_student_survey">
+                Survey Form
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal_student_survey" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"> Student Checkin Survey </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Thank you for taking the time to take this short survey! Your answers will help you to grow. </p>
+                <form action="/submit_student_checkin_survey" method="post">
+
+                  <input type="text" class="date" name="submission" hidden>
+
+                  <div class=" mb-3">
+                    <label for="student_name" class="form-label">Student Name</label>
+                    <input type="text" class="form-control" name="student_name" id="student_name">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="feelings" class="form-label">Feelings with digital education approach while studying from home</label>
+                    <div class="form-check" id="feelings">
+                      <input name="feelings" class="form-check-input" type="checkbox" value="fine">
+                      <label class="form-check-label">
+                        Fine
+                      </label>
+                    </div>
+                    <div class="form-check" id="feelings">
+                      <input name="feelings" class="form-check-input" type="checkbox" value="Unwell">
+                      <label class="form-check-label">
+                        Unwell
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input name="feelings" class="form-check-input" type="checkbox" value="tired">
+                      <label class="form-check-label">
+                        Tired
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input name="feelings" class="form-check-input" type="checkbox" value="Well-rested">
+                      <label class="form-check-label">
+                        Well-Rested
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input name="feelings" class="form-check-input" type="checkbox" value="nervous">
+                      <label class="form-check-label">
+                        Nervous
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input name="feelings" class="form-check-input" type="checkbox" value="claustrophobic">
+                      <label class="form-check-label">
+                        Claustrophobic
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input name="feelings" class="form-check-input" type="checkbox" value="Happy">
+                      <label class="form-check-label">
+                        Happy
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input name="feelings" class="form-check-input" type="checkbox" value="Need to talk to someone">
+                      <label class="form-check-label">
+                        Need to talk to someone about how I feel.
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="physical_health">
+                      Physical Health
+                    </label>
+                    <input type="range" value="1" min="1" max="5" id="physical_health" name="physical_health"
+                      oninput="this.nextElementSibling.value = this.value">
+                    <output>1</output>
+                  </div>
+
+                  <br>
+                  <div class="flex justify-end">
+                    <button type="submit" class="btn btn-success m-0.5">Submit</button>
+                    <button type="button" class="btn btn-secondary m-0.5" data-dismiss="modal">Close</button>
+                  </div>
+
+                  
+                </form>
+              </div>
+
+              <div class="modal-footer">
+                <p class="text-green-800" id="parents_checkin_survey_message"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="p-4 h-96 md:w-1/3">
+          <div class="flex rounded-lg h-full bg-gray-100 p-8 pt-0 flex-col">
+            <div class="flex items-center mb-3 bg-blue-100 justify-center text-center">
+              <h2 class="text-gray-900 text-lg p-3 title-font font-medium">Teacher Feedback</h2>
+            </div>
+            <div class="flex-grow">
+              <p class="leading-relaxed text-base leading-loose" style="line-height: 1.25rem;">
+                Teacher feedback about student's performance and engagement in the class
+                <!-- • <u> GPA </u> <br>
+                • <u> Class Engagement Score </u> <br>
+                • <u> Social Behavior Score </u> <br>
+                • <u> Other feedback </u> -->
+              </p>
+              <button class="mt-3 text-indigo-500 inline-flex items-center" data-toggle="modal"
+                data-target="#modal_teacher_survey">
+                Survey Form
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal_teacher_survey" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"> Teacher Feedback </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Thank you for taking the time to take this short survey! Your answers will help you and your students to grow. </p>
+                <form action="/submit_teacher_checkin_survey" method="post">
+
+                  <input type="text" class="date" name="submission" hidden>
+
+                  <div class=" mb-3">
+                    <label for="student_name" class="form-label">Student Name</label>
+                    <input type="text" class="form-control" name="student_name" id="student_name">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="teacher_name" class="form-label">Teacher Name</label>
+                    <input type="text" class="form-control" name="teacher_name" id="teacher_name">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="subject" class="form-label">Course/Subject</label>
+                    <input type="text" class="form-control" name="subject" id="subject">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="marks" class="form-label">Marks</label>
+                    <input type="text" class="form-control" name="marks" id="marks">
+                  </div>
+
+
+                  <div class="mb-3">
+                    <label for="discussions">
+                      Class Engagement score (Discussions/participations)
+                    </label>
+                    <input type="range" value="1" min="1" max="100" name="discussions" id="discussions"
+                      oninput="this.nextElementSibling.value = this.value">
+                    <output>1</output>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="social_behaviour">
+                      Social Behaviour
+                    </label><br>
+                    <input type="range" value="1" min="1" max="10" id="social_behaviour" name="social_behaviour"
+                      oninput="this.nextElementSibling.value = this.value">
+                    <output>1</output>
+                  </div>
+                  
+
+                  <div class="mb-3">
+                    <label for="absences_form">
+                      Absences
+                    </label><br>
+                    <div class="form-check" id="absences_form">
+                      <input class="form-check-input" type="radio" name="absences" value="Under-7" id="flexRadioDefault1" checked>
+                      <label class="form-check-label" for="flexRadioDefault1">
+                        Under-7
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="absences" value="Above-7" id="flexRadioDefault2">
+                      <label class="form-check-label" for="flexRadioDefault2">
+                        Above-7
+                      </label>
+                    </div>
+                  </div>
+                  
+                  <div class=" mb-3">
+                    <label for="other_Feedback" class="form-label">Any other feedback</label>
+                    <input type="text" class="form-control" name="other_Feedback" id="other_Feedback">
+                  </div>
+
+                  <br>
+                  <div class="flex justify-end">
+                    <button type="submit" class="btn btn-success m-0.5">Submit</button>
+                    <button type="button" class="btn btn-secondary m-0.5" data-dismiss="modal">Close</button>
+                  </div>
+                </form>
+              </div>
+
+              <div class="modal-footer">
+                <p class="text-green-800" id="parents_checkin_survey_message"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="p-4 h-96 md:w-1/3">
+          <div class="flex rounded-lg h-full bg-gray-100 p-8 pt-0 flex-col">
+            <div class="flex items-center mb-3 bg-blue-100 justify-center text-center">
+              <h2 class="text-gray-900 text-lg p-3 title-font font-medium">Parents checkin Survey</h2>
+            </div>
+            <div class="flex-grow">
+              <p class="leading-relaxed text-base"
+                style="line-height: 1.25rem; padding-bottom: 0px; margin-bottom: 0px;">
+                Parent feedback about childeren lifestyle habits.
+              </p>
+              <button class="mt-3 text-indigo-500 inline-flex items-center" data-toggle="modal"
+                data-target="#modal_parents_survey">
+                Survey Form
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal_parents_survey" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"> Parents checkin survey </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Thank you for taking the time to take this short survey! Your answers will help your child to grow. </p>
+                <form action="/submit_parent_checkin_survey" method="post">
+
+                  <input type="text" class="date" name="submission" hidden>
+
+                  <div class=" mb-3">
+                    <label for="student_name" class="form-label">Student Name</label>
+                    <input type="text" class="form-control" name="student_name" id="student_name">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="parent_name" class="form-label">Parent Name</label>
+                    <input type="text" class="form-control" name="parent_name" id="parent_name">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="key_trait" class="form-label">Key Trait (eg: Vision, Passion, etc.)</label>
+                    <input type="text" class="form-control" name="key_trait" id="key_trait">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="wakeup_time" class="form-label">Wake up time</label><br>
+                    <select class="form-select" name="wakeup_time" id="wakeup_time">
+                      <option selected value="">Select</option>
+                      <option value="3 AM">3 AM</option>
+                      <option value="4 AM">4 AM</option>
+                      <option value="5 AM">5 AM</option>
+                      <option value="6 AM">6 AM</option>
+                      <option value="7 AM">7 AM</option>
+                      <option value="8 AM">8 AM</option>
+                      <option value="9 AM">9 AM</option>
+                      <option value="10 AM">10 AM</option>
+                      <option value="11 AM">11 AM</option>
+                    </select>
+                  </div>
+
+
+                  <div class="mb-3">
+                    <label for="sleep_time" class="form-label">Sleep time</label><br>
+                    <select class="form-select" name="sleep_time" id="sleep_time">
+                      <option selected value="">Select</option>
+                      <option value="7 PM">7 PM</option>
+                      <option value="8 PM">8 PM</option>
+                      <option value="9 PM">9 PM</option>
+                      <option value="10 PM">10 PM</option>
+                      <option value="11 PM">11 PM</option>
+                      <option value="12 AM">12 AM</option>
+                      <option value="1 AM">1 AM</option>
+                      <option value="2 AM">2 AM</option>
+                      <option value="3 AM">3 AM</option>
+                    </select>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="eating_form" class="form-label">Eating Habbits</label>
+                    <div class="form-check" id="eating_form">
+                      <input name="eating_habbits" class="form-check-input" type="checkbox" value="breakfast">
+                      <label class="form-check-label">
+                        Eats breakfast
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input name="eating_habbits" class="form-check-input" type="checkbox" value="lunch">
+                      <label class="form-check-label">
+                        Eats Lunch
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input name="eating_habbits" class="form-check-input" type="checkbox" value="dinner">
+                      <label class="form-check-label">
+                        Eats Dinner
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="lifestyle_habbits">
+                      Lifestyle habbits (score out of 10)
+                    </label>
+                    <input type="range" value="1" min="1" max="10" id="lifestyle_habbits" name="lifestyle_habbits"
+                      oninput="this.nextElementSibling.value = this.value">
+                    <output>1</output>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="family_time">
+                      Family Time (score out of 5)
+                    </label>
+                    <input type="range" value="1" min="1" max="5" id="family_time" name="family_time"
+                      oninput="this.nextElementSibling.value = this.value">
+                    <output>1</output>
+                  </div>
+
+                  <div class=" mb-3">
+                    <label for="parent_suggestions" class="form-label">Suggestions</label>
+                    <input type="text" class="form-control" name="parent_suggestions" id="parent_suggestions">
+                  </div>
+
+                  <br>
+                  <div class="flex justify-end">
+                    <button type="submit" class="btn btn-success m-0.5">Submit</button>
+                    <button type="button" class="btn btn-secondary m-0.5" data-dismiss="modal">Close</button>
+                  </div>
+                </form>
+              </div>
+
+              <div class="modal-footer">
+                <p class="text-green-800" id="parents_checkin_survey_message"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+  </section>
+
+  <div class="flex flex-wrap justify-center items-center">
+    <hr style=" width: 80%; height:0.8px;border:none;color:#333;background-color:grey;" class="flex justify-center">
+  </div>
+
+  <!-- <Footer> -->
+  <footer class="text-gray-600 body-font">
+    <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+      <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+        <img src={{ url_for('static', filename='images/Logo.png' ) }} width="150"></img>
+        <!-- <span class="ml-3 text-xl">Tailblocks</span> -->
+      </a>
+      <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2021
+        Neuron Fire —
+        <a href="https://twitter.com/knyttneve" class="text-gray-600 ml-1" rel="noopener noreferrer"
+          target="_blank">@BuiltWithAI</a>
+      </p>
+      <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+        <a class="text-gray-500">
+          <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
+            viewBox="0 0 24 24">
+            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+          </svg>
+        </a>
+        <a class="ml-3 text-gray-500">
+          <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
+            viewBox="0 0 24 24">
+            <path
+              d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
+            </path>
+          </svg>
+        </a>
+        <a class="ml-3 text-gray-500">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            class="w-5 h-5" viewBox="0 0 24 24">
+            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+          </svg>
+        </a>
+        <a class="ml-3 text-gray-500">
+          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0"
+            class="w-5 h-5" viewBox="0 0 24 24">
+            <path stroke="none"
+              d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+            <circle cx="4" cy="4" r="2" stroke="none"></circle>
+          </svg>
+        </a>
+      </span>
+    </div>
+  </footer>
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- jquery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      let date_inputs = document.querySelectorAll(".date");
+      console.log(date_inputs);
+      for (let i = 0; i < date_inputs.length; i++) {
+        current = date_inputs[i];
+        current.value = new Date().toLocaleDateString();
+      }
+    });
+  </script>
+</body>
+
+</html>
