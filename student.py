@@ -6,7 +6,9 @@ class Student:
     IndividualProject, Gender, Age,	City,Influenced,	Perseverance,	DesireToTakeInitiative,	Competitiveness,	SelfReliance,	StrongNeedToAchieve,	SelfConfidence,	GoodPhysicalHealth,	KeyTraits) -> None:
         self.name = name
         self.marks = marks
-        self.predicted_marks = int(round((sum(self.marks.values()) / len(self.marks.values())), 3) + random.randint(-20, 20)) % 100
+        self.predicted_marks = int(round((sum(self.marks.values()) / len(self.marks.values())), 3) + random.randint(-5, 10)) % 100
+        self.parent_satisfaction = 5
+        self.happy_path = 5
         
         # For parent satisfation prediction algorithm
         self.gender = gender

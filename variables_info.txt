@@ -1,0 +1,23 @@
+
+hardcoded once: self, name, marks, gender, 
+NationalITy, PlaceofBirth, StageID, GradeID, SectionID, Topic, Semester, Relation, Gender, Age,	City,
+
+
+(automated count from website, zoom, etc): raisedhands, VisITedResources(automated count from website), AnnouncementsView(automated count from website), 
+
+
+
+hardcoded: 
+ParentAnsweringSurvey, Class,Influenced,	
+
+notsure- hardcoded: 
+IndividualProject, Perseverance,	DesireToTakeInitiative,	Competitiveness,	SelfReliance,	StrongNeedToAchieve,	SelfConfidence,	
+
+
+
+
+Student form: GoodPhysicalHealth (1-5 scale) (done)
+
+Teacher Form:  Discussion(no. of discussions)done, StudentAbsenceDays(done)
+
+Parents form:  KeyTraits
