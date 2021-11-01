@@ -37,13 +37,15 @@
   </header>
 
 
+  <div class="flex flex-wrap justify-center items-center">
+    <hr style=" width: 80%; height:0.8px;border:none;color:#333;background-color:grey;" class="flex justify-center">
+  </div>
   <!-- <Mission Statement> -->
   <section class="text-gray-600 body-font">
     <div style="padding:0;" class="container px-10 py-24 mx-auto">
       <div class="mb-10">
         <div class="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4"></div>
         <p class="text-base leading-relaxed xl:w-3/4 lg:w-3/4 mx-auto">
-
         <ul>
           <div style="margin-left: 90px; margin-right: 90px;">
             <li>
@@ -82,6 +84,7 @@
       </div>
   </section>
 
+
   <!-- <Features Section> -->
   <section class="text-gray-600 body-font">
     <div class="container px-2 mx-auto">
@@ -110,9 +113,9 @@
             </div>
             <div class="flex-grow">
               <p style="line-height: 1.25rem;">
-                • Self Grade: {{ self_grade }}<br>
-                • Grade Predictor: {{ predicted_grade }}<br>
-                • AI Course Recommendations:
+                • <u>Self Grade:</u> {{ self_grade }} %<br>
+                • <u>Grade Predictor:</u> {{ predicted_grade }} %<br>
+                • <u>AI Course Recommendations:</u>
                 {{ ", ".join(recommended_courses[:3]) }}
                 {% if recommended_courses|length > 3 %}
                 and {{ recommended_courses|length - 3}} more
@@ -142,11 +145,11 @@
                 </button>
               </div>
               <div class="modal-body">
-                <p> Your grade so far is: <u> {{ self_grade }} </u> </p> <br>
+                <p> Your grade so far is: <u> {{ self_grade }} %</u> </p> <br>
                 <p> Based on your history, interests and other statistics, we predict your upcoming semester's result to
-                  be: <u> {{ predicted_grade }} </u> </p> <br>
+                  be: <u> {{ predicted_grade }} %</u> </p> <br>
                 <p>
-                  Here are the courses that we recommend you do:
+                  Here are the courses that we recommend you focus more on:
                 <ul>
                   {% for course in recommended_courses %}
                   <li> > {{ course }} </li>
@@ -168,9 +171,10 @@
               <h2 class="text-gray-900 text-lg p-3 title-font font-medium">Teacher View</h2>
             </div>
             <div class="flex-grow">
-              <p class="leading-relaxed text-base leading-loose" style="line-height: 1.25rem;">• All student grades<br>
-                • Grade prediction (overall)<br>
-                • AI Course Recommendation
+              <p class="leading-relaxed text-base leading-loose" style="line-height: 1.25rem;">
+                • <u>All students grades</u><br>
+                • <u>Grades predictions</u><br>
+                • <u>AI Recommendations for improving overall performance of all students</u>
               </p>
               <button class="mt-3 text-indigo-500 inline-flex items-center" data-toggle="modal"
                 data-target="#modal_academic_teacher">
@@ -196,18 +200,18 @@
                 </button>
               </div>
               <div class="modal-body">
-                <h3> <u> Students' records </u> </h3>
+                <h5> <u> Students' records </u> </h5>
                 <p>
                   {% for student in all_grades %}
                   {{ student }} <br>
-                  {% for year in all_grades[student] %}
-                  &ensp;{{ year }}: {{ all_grades[student][year] }} <br>
+                  {% for subject in subjects %}
+                  &ensp;{{ subject }}: {{ all_grades[student][subject] }} <br>
                   {% endfor %}
                   &ensp;Future prediction: {{ all_grades[student]["prediction"] }} <br>
                   <br>
                   {% endfor %}
-                </p> <br>
-                <h3> <u> AI Course Recommendations </u> </h3>
+                </p>
+                <h5> <u>AI Recommendations for improving overall performance of all students</u> </h5>
                 TODO
               </div>
               <div class="modal-footer">
@@ -336,49 +340,30 @@
           </div>
         </div>
 
+        <div class="flex flex-wrap justify-center items-center">
+          <hr style=" width: 80%; height:0.8px;border:none;color:#333;background-color:grey;" class="flex justify-center">
+        </div>
+
         <!-- <Checkin Surveys> -->
         <div class="flex flex-col text-center w-full mb-10">
-          <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">Student_Teacher_Parent checkin Survey
+          <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">Checkin Surveys
           </h1>
         </div>
 
         <div class="p-4 h-96 md:w-1/3">
           <div class="flex rounded-lg h-full bg-gray-100 p-8 pt-0 flex-col">
-            <div class="flex items-center mb-3 bg-red-100">
-              <h2 class="text-gray-900 text-lg p-5 title-font font-medium">Student Checkin Survey</h2>
+            <div class="flex items-center mb-3 bg-blue-100">
+              <h2 class="text-gray-900 text-lg p-3 title-font font-medium">Student Checkin Survey</h2>
             </div>
             <div class="flex-grow">
-              <p class="leading-relaxed text-base leading-loose"><i>Kindly fill in the below attach form, an our model
-                  will predict</i></p>
-              <ul class="leading-relaxed text-base leading-loose">
-                <li>Top Resources in areas of your weakness</li>
-                <li>Most Practical Recommendations</li>
-                <li>Your Future Expected Performance</li>
-              </ul>
-              <button class="mt-3 text-indigo-500 inline-flex items-center" data-toggle="modal"
-                data-target="#modal_academic_student">
-                Survey Form
-                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                  <path d="M5 12h14M12 5l7 7-7 7"></path>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="p-4 h-96 md:w-1/3">
-          <div class="flex rounded-lg h-full bg-gray-100 p-8 pt-0 flex-col">
-            <div class="flex items-center mb-3 bg-red-100">
-              <h2 class="text-gray-900 text-lg p-5 title-font font-medium">Teacher Feedback</h2>
-            </div>
-            <div class="flex-grow">
-              <p class="leading-relaxed text-base leading-loose" style="line-height: 1.25rem;"><i>Class Engagement<br>
-                  Exam scores<br>
-                  Social behavior in class</i>
+              <p class="leading-relaxed text-base leading-loose" style="line-height: 1.25rem;">
+                • <u>Feelings with digital education approach while studying from home:</u> I'm fine, Tired <br>
+                • <u>Concerns / problems that might limit ability to engage in learning activities over the next few weeks</u> <br>
+                • <u>Ideas for low-effort & fun ways to connect </u> <br>
+                • <u>How can teachers/mentors help</u> <br>
               </p>
               <button class="mt-3 text-indigo-500 inline-flex items-center" data-toggle="modal"
-                data-target="#modal_teacher_survey">
+                data-target="#modal_student_survey">
                 Survey Form
                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   class="w-4 h-4 ml-2" viewBox="0 0 24 24">
@@ -390,18 +375,19 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="modal_teacher_survey" tabindex="-1" role="dialog"
+        <div class="modal fade" id="modal_student_survey" tabindex="-1" role="dialog"
           aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title"> Teacher checkin survey </h5>
+                <h5 class="modal-title"> Student Checkin Survey </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                <form action="/submit_parent_checkin_survey" method="post">
+                <p>Thank you for taking the time to take this short survey! Your answers will help you and your students to grow. </p>
+                <form action="/submit_student_checkin_survey" method="post">
 
                   <input type="text" class="date" name="submission" hidden>
 
@@ -411,85 +397,55 @@
                   </div>
 
                   <div class="mb-3">
-                    <label for="parent_name" class="form-label">Parent Name</label>
-                    <input type="text" class="form-control" name="parent_name" id="parent_name">
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="wakeup_time" class="form-label">Wake up time</label><br>
-                    <select class="form-select" name="wakeup_time" id="wakeup_time">
-                      <option selected value="">Select</option>
-                      <option value="3 AM">3 AM</option>
-                      <option value="4 AM">4 AM</option>
-                      <option value="5 AM">5 AM</option>
-                      <option value="6 AM">6 AM</option>
-                      <option value="7 AM">7 AM</option>
-                      <option value="8 AM">8 AM</option>
-                      <option value="9 AM">9 AM</option>
-                      <option value="10 AM">10 AM</option>
-                      <option value="11 AM">11 AM</option>
-                    </select>
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="sleep_time" class="form-label">Sleep time</label><br>
-                    <select class="form-select" name="sleep_time" id="sleep_time">
-                      <option selected value="">Select</option>
-                      <option value="7 PM">7 PM</option>
-                      <option value="8 PM">8 PM</option>
-                      <option value="9 PM">9 PM</option>
-                      <option value="10 PM">10 PM</option>
-                      <option value="11 PM">11 PM</option>
-                      <option value="12 AM">12 AM</option>
-                      <option value="1 AM">1 AM</option>
-                      <option value="2 AM">2 AM</option>
-                      <option value="3 AM">3 AM</option>
-                    </select>
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="eating_form" class="form-label">Eating Habbits</label>
-                    <div class="form-check" id="eating_form">
-                      <input name="eating_habbits" class="form-check-input" type="checkbox" value="breakfast">
+                    <label for="feelings" class="form-label">Feelings with digital education approach while studying from home</label>
+                    <div class="form-check" id="feelings">
+                      <input name="feelings" class="form-check-input" type="checkbox" value="fine">
                       <label class="form-check-label">
-                        Eats breakfast
+                        Fine
+                      </label>
+                    </div>
+                    <div class="form-check" id="feelings">
+                      <input name="feelings" class="form-check-input" type="checkbox" value="Unwell">
+                      <label class="form-check-label">
+                        Unwell
                       </label>
                     </div>
                     <div class="form-check">
-                      <input name="eating_habbits" class="form-check-input" type="checkbox" value="lunch">
+                      <input name="feelings" class="form-check-input" type="checkbox" value="tired">
                       <label class="form-check-label">
-                        Eats Lunch
+                        Tired
                       </label>
                     </div>
                     <div class="form-check">
-                      <input name="eating_habbits" class="form-check-input" type="checkbox" value="dinner">
+                      <input name="feelings" class="form-check-input" type="checkbox" value="Well-rested">
                       <label class="form-check-label">
-                        Eats Dinner
+                        Well-Rested
                       </label>
                     </div>
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="lifestyle_habbits">
-                      Lifestyle habbits (score out of 10)
-                    </label>
-                    <input type="range" value="1" min="1" max="10" id="lifestyle_habbits" name="lifestyle_habbits"
-                      oninput="this.nextElementSibling.value = this.value">
-                    <output>1</output>
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="family_time">
-                      Family Time (score out of 5)
-                    </label>
-                    <input type="range" value="1" min="1" max="5" id="family_time" name="family_time"
-                      oninput="this.nextElementSibling.value = this.value">
-                    <output>1</output>
-                  </div>
-
-                  <div class=" mb-3">
-                    <label for="parent_suggestions" class="form-label">Suggestions</label>
-                    <input type="text" class="form-control" name="parent_suggestions" id="parent_suggestions">
+                    <div class="form-check">
+                      <input name="feelings" class="form-check-input" type="checkbox" value="nervous">
+                      <label class="form-check-label">
+                        Nervous
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input name="feelings" class="form-check-input" type="checkbox" value="claustrophobic">
+                      <label class="form-check-label">
+                        Claustrophobic
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input name="feelings" class="form-check-input" type="checkbox" value="Happy">
+                      <label class="form-check-label">
+                        Happy
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input name="feelings" class="form-check-input" type="checkbox" value="Need to talk to someone">
+                      <label class="form-check-label">
+                        Need to talk to someone about how I feel.
+                      </label>
+                    </div>
                   </div>
 
                   <br>
@@ -512,22 +468,122 @@
 
         <div class="p-4 h-96 md:w-1/3">
           <div class="flex rounded-lg h-full bg-gray-100 p-8 pt-0 flex-col">
-            <div class="flex items-center mb-3 bg-red-100">
-              <h2 class="text-gray-900 text-lg p-5 title-font font-medium">Parents checkin Survey</h2>
+            <div class="flex items-center mb-3 bg-blue-100">
+              <h2 class="text-gray-900 text-lg p-3 title-font font-medium">Teacher Feedback</h2>
+            </div>
+            <div class="flex-grow">
+              <p class="leading-relaxed text-base leading-loose" style="line-height: 1.25rem;">
+                • <u> GPA </u> <br>
+                • <u> Class Engagement Score </u> <br>
+                • <u> Social Behavior Score </u> <br>
+                • <u> Other feedback </u>
+              </p>
+              <button class="mt-3 text-indigo-500 inline-flex items-center" data-toggle="modal"
+                data-target="#modal_teacher_survey">
+                Survey Form
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal_teacher_survey" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"> Teacher Feedback </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Thank you for taking the time to take this short survey! Your answers will help you and your students to grow. </p>
+                <form action="/submit_teacher_checkin_survey" method="post">
+
+                  <input type="text" class="date" name="submission" hidden>
+
+                  <div class=" mb-3">
+                    <label for="student_name" class="form-label">Student Name</label>
+                    <input type="text" class="form-control" name="student_name" id="student_name">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="teacher_name" class="form-label">Teacher Name</label>
+                    <input type="text" class="form-control" name="teacher_name" id="teacher_name">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="course" class="form-label">Course</label>
+                    <input type="text" class="form-control" name="course" id="course">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="gpa" class="form-label">GPA</label>
+                    <input type="text" class="form-control" name="gpa" id="gpa">
+                  </div>
+
+
+                  <div class="mb-3">
+                    <label for="class_engagement">
+                      Class Engagement (score out of 10)
+                    </label>
+                    <input type="range" value="1" min="1" max="10" id="class_engagement" name="class_engagement"
+                      oninput="this.nextElementSibling.value = this.value">
+                    <output>1</output>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="social_behaviour">
+                      Social Behaviour
+                    </label>
+                    <input type="range" value="1" min="1" max="10" id="social_behaviour" name="social_behaviour"
+                      oninput="this.nextElementSibling.value = this.value">
+                    <output>1</output>
+                  </div>
+
+                  <div class=" mb-3">
+                    <label for="other_Feedback" class="form-label">Any other feedback</label>
+                    <input type="text" class="form-control" name="other_Feedback" id="other_Feedback">
+                  </div>
+
+                  <br>
+                  <div class="flex justify-end">
+                    <button type="submit" class="btn btn-success m-0.5">Submit</button>
+                    <button type="button" class="btn btn-secondary m-0.5" data-dismiss="modal">Close</button>
+                  </div>
+                </form>
+              </div>
+
+              <div class="modal-footer">
+                <p class="text-green-800" id="parents_checkin_survey_message"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="p-4 h-96 md:w-1/3">
+          <div class="flex rounded-lg h-full bg-gray-100 p-8 pt-0 flex-col">
+            <div class="flex items-center mb-3 bg-blue-100">
+              <h2 class="text-gray-900 text-lg p-3 title-font font-medium">Parents checkin Survey</h2>
             </div>
             <div class="flex-grow">
               <p class="leading-relaxed text-base"
                 style="line-height: 1.25rem; padding-bottom: 0px; margin-bottom: 0px;">
-                Last Submitted: {{ parents_survey_data[current_student].get("last_submission") if
+                • <u>Last Submitted</u>: {{ parents_survey_data[current_student].get("last_submission") if
                 parents_survey_data[current_student].get("last_submission") else 'Unavailable' }}<br>
-                Lifestyle Habbits (score out of 10): {{ parents_survey_data[current_student].get("lifestyle_habbits") if
+                • <u>Lifestyle Habbits</u> (score out of 10): {{ parents_survey_data[current_student].get("lifestyle_habbits") if
                 parents_survey_data[current_student].get("lifestyle_habbits") else 'Unavailable' }}<br>
-                Eating Habbits: {{ ", ".join(parents_survey_data[current_student].get("eating_habbits")) if
+                • <u>Eating Habbits:</u> {{ ", ".join(parents_survey_data[current_student].get("eating_habbits")) if
                 parents_survey_data[current_student].get("eating_habbits") else 'Unavailable' }}<br>
-                <!-- Wake up time: {{ parents_survey_data[current_student].get("wakeup_time") if parents_survey_data[current_student].get("wakeup_time") else 'Unavailable' }} <br> -->
-                Sleep time: {{ parents_survey_data[current_student].get("sleep_time") if
+                • <u>Sleep time:</u> {{ parents_survey_data[current_student].get("sleep_time") if
                 parents_survey_data[current_student].get("sleep_time") else 'Unavailable' }} <br>
-                Time spent with family members (score out of 5): {{
+                • <u>Time spent with family members (score out of 5):</u> {{
                 parents_survey_data[current_student].get("family_time") if
                 parents_survey_data[current_student].get("family_time") else 'Unavailable' }}
               </p>
@@ -555,6 +611,7 @@
                 </button>
               </div>
               <div class="modal-body">
+                <p>Thank you for taking the time to take this short survey! Your answers will help your child to grow. </p>
                 <form action="/submit_parent_checkin_survey" method="post">
 
                   <input type="text" class="date" name="submission" hidden>
@@ -665,6 +722,10 @@
 
       </div>
   </section>
+
+  <div class="flex flex-wrap justify-center items-center">
+    <hr style=" width: 80%; height:0.8px;border:none;color:#333;background-color:grey;" class="flex justify-center">
+  </div>
 
   <!-- <Footer> -->
   <footer class="text-gray-600 body-font">

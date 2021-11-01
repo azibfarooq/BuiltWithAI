@@ -1,5 +1,0 @@
-> improve logo (increase fire size)
-> fix spelling mistakes
-> Change mission and vision to bullets
-> move section headers like academicstudent grading to left and views to right
-> make parent survey form popover
