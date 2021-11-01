@@ -271,4 +271,4 @@ def get_happy_path(student):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run("0.0.0.0", port=int("8080"), debug=True)
