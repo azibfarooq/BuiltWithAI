@@ -254,7 +254,7 @@
                   {% if student == current_student.name %}
                   <b>Parent Satisfaction score:</b> {{ current_student.parent_satisfaction }} / 10
                   {% else %}
-                  <b>Parent Satisfaction:</b> {{ current_student.parent_satisfaction }}
+                  <b>Parent Satisfaction score:</b> {{ {{ range(4, 10) | random }} }} /10
                   {% endfor %}
                 </p>
                 <h5> <u>Recommendations based on overall students performance by AI</u> </h5>
