@@ -250,12 +250,13 @@
                   {% endfor %}
                   &ensp;<b>Current grade:</b> {{ all_grades[student]["self_grade"] }} <br>
                   &ensp;<b>Future prediction:</b> {{ all_grades[student]["prediction"] }} <br>
-                  <br>
                   {% if student == current_student.name %}
-                  <b>Parent Satisfaction score:</b> {{ current_student.parent_satisfaction }} / 10
+                  <b>&ensp;Parent Satisfaction score:</b> {{ current_student.parent_satisfaction }} / 10 <br><br>
                   {% else %}
-                  <b>Parent Satisfaction score:</b> {{ {{ range(4, 10) | random }} }} /10
+                  <b>&ensp;Parent Satisfaction score:</b> {{ range(7, 10) | random }} / 10 <br><br>
+                  {% endif %}
                   {% endfor %}
+                  <br>
                 </p>
                 <h5> <u>Recommendations based on overall students performance by AI</u> </h5>
                 According to our algorithm and based on the overall performance of the class, you should focus more on the following subjects:<br>
