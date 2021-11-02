@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, flash, redirect
 from student import Student
 import random
-# from AI_algorithms import get_happy_path, get_parent_satisfaction
+from gc import collect
+
 app = Flask(__name__)
 app.secret_key = "35gbbad932565nnssndg"
 
@@ -39,20 +40,19 @@ current_student = random.choice([Kamran, Andrew, Simon]) # currently logged in s
 
 @app.route("/")
 def index():
+    Kamran = Student("Kamran",  {subject: random.randint(1, 100) for subject in subjects}, "M", "lebanon", "lebanon", "MiddleSchool", "G-08", "A", random.choice(subjects), "F", "Father", 15, 14, 12, 60, random.choice(["Yes", "No"]), random.choice(["Under-7", "Above-7"]), random.choice(["M", "L", "H"]),
+                 random.choice(["Yes", "No"]), "Male", random.randint(17, 26), random.choice(["Yes", "No"]), random.choice(["Yes", "No"]), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), 
+                 random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), "Positivity")
 
-    # Kamran = Student("Kamran",  {subject: random.randint(1, 100) for subject in subjects}, "M", "lebanon", "lebanon", "MiddleSchool", "G-08", "A", random.choice(subjects), "F", "Father", 15, 14, 12, 60, random.choice(["Yes", "No"]), random.choice(["Under-7", "Above-7"]), random.choice(["M", "L", "H"]),
-    #              random.choice(["Yes", "No"]), "Male", random.randint(17, 26), random.choice(["Yes", "No"]), random.choice(["Yes", "No"]), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), 
-    #              random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), "Positivity")
+    Andrew =  Student("Andrew",  {subject: random.randint(1, 100) for subject in subjects}, "M", "Egypt", "Egypt", "MiddleSchool", "G-07", "A", random.choice(subjects), "F", "Father", 8, 10, 20, 90, random.choice(["Yes", "No"]), random.choice(["Under-7", "Above-7"]), random.choice(["M", "L", "H"]),
+                    random.choice(["Yes", "No"]), "Male", random.randint(17, 26), random.choice(["Yes", "No"]), random.choice(["Yes", "No"]), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), 
+                    random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), "Passion")
 
-    # Andrew =  Student("Andrew",  {subject: random.randint(1, 100) for subject in subjects}, "M", "Egypt", "Egypt", "MiddleSchool", "G-07", "A", random.choice(subjects), "F", "Father", 8, 10, 20, 90, random.choice(["Yes", "No"]), random.choice(["Under-7", "Above-7"]), random.choice(["M", "L", "H"]),
-    #                 random.choice(["Yes", "No"]), "Male", random.randint(17, 26), random.choice(["Yes", "No"]), random.choice(["Yes", "No"]), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), 
-    #                 random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), "Passion")
-
-    # Simon =  Student("Simon",  {subject: random.randint(1, 100) for subject in subjects}, "M", "KW", "KuwaIT", "lowerlevel", "G-12", "A", random.choice(subjects), "F", "Mum", 70, 80, 10, 90, random.choice(["Yes", "No"]), random.choice(["Under-7", "Above-7"]), random.choice(["M", "L", "H"]),
-    #                 random.choice(["Yes", "No"]), "Male", random.randint(17, 26), random.choice(["Yes", "No"]), random.choice(["Yes", "No"]), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), 
-    #                 random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), "Vision")
-    # students = [Kamran, Andrew, Simon]
-    # current_student = random.choice([Kamran, Andrew, Simon]) # currently logged in student
+    Simon =  Student("Simon",  {subject: random.randint(1, 100) for subject in subjects}, "M", "KW", "KuwaIT", "lowerlevel", "G-12", "A", random.choice(subjects), "F", "Mum", 70, 80, 10, 90, random.choice(["Yes", "No"]), random.choice(["Under-7", "Above-7"]), random.choice(["M", "L", "H"]),
+                    random.choice(["Yes", "No"]), "Male", random.randint(17, 26), random.choice(["Yes", "No"]), random.choice(["Yes", "No"]), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), 
+                    random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), "Vision")
+    students = [Kamran, Andrew, Simon]
+    current_student = random.choice([Kamran, Andrew, Simon]) # currently logged in student
 
     for s in students:
         parent_satisfaction = get_parent_satisfaction(s)[0]
@@ -60,15 +60,17 @@ def index():
             s.parent_satisfaction = random.randint(1, 5)
         else:
             s.parent_satisfaction = random.randint(6, 10)
+        s.parent_satisfaction = parent_satisfaction
 
         happy_path = get_happy_path(s)[0]
         if happy_path == 0:
             s.happy_path = random.randint(1, 5)
         else:
             s.happy_path = random.randint(6, 10)
+        s.happy_path = happy_path
 
     # print(sample_data)
-    # return str([(s.name, s.happy_path, s.parent_satisfaction) for s in students]) + "<br><br>" 
+    return str([(s.name, s.happy_path, s.parent_satisfaction) for s in students]) + "<br><br>" 
     # return f"Happy path score: {happy_path}, parent_satisfaction: {parent_satisfaction} student = {current_student.name}"
 
     # calculating cgpa for current_student
@@ -153,6 +155,8 @@ def submit_parent_checkin_survey():
 
     student.KeyTraits = key_trait
     
+    flash("Parents checkin survey form submitted!")
+    return redirect("/")
     # form_result = request.form
     # student_name = request.form.get("student_name")
     # if student_name not in grades:
@@ -178,52 +182,48 @@ def submit_parent_checkin_survey():
 
     # return str(parents_survey_data) + "<br><br><br><br>" + str(request.form)
 
-    flash("Parents checkin survey form submitted!")
-    return redirect("/")
-
 
 #### AI ALGOS
+
 
 from random import sample
 from sklearn.preprocessing import OneHotEncoder
 import pickle
 import numpy as np
-
 import warnings
 warnings.filterwarnings('ignore')
 import pandas as pd
 
-file = "xAPI-Edu-Data.csv"
-df = pd.read_csv(file)
-df['ParentschoolSatisfaction'].replace(['Bad','Good'],[1, 0],inplace=True)
-features_df = df.drop('ParentschoolSatisfaction', axis='columns')
-sample_data = features_df.sample(1)
 
 
-### Model load and pridict the value
-# load the model from disk
-filename = 'parent_satisfiction_model.pkl'
-train_model = pickle.load(open(filename, 'rb'))
+# Algo1 work
+file1 = "clean_data.csv"
+df1 = pd.read_csv(file1)
+df1.drop(['Unnamed: 0'], axis=1, inplace=True)
+df1['MentalDisorder'].replace(['Yes','No'],[1, 0],inplace=True)
+features_df1 = df1.drop('MentalDisorder', axis='columns')
+sample_data1 = features_df1.sample(1)
+filename1 = 'mental_model.pkl'
+train_model1 = pickle.load(open(filename1, 'rb'))
+del file1
+del df1
+del filename1
 
 
-def predict_parent_satisfaction(input_data, model_name):
-    """ Pridict the result based on the input values"""
-    numeric_cols = input_data.columns[input_data.dtypes != "object"].values
-    categori_cols = input_data.columns[input_data.dtypes == "object"].values
-    
-    encoder = OneHotEncoder(sparse=False, handle_unknown='ignore')
-    encoder.fit(features_df[categori_cols])
-    
-    encoded_cols = list(encoder.get_feature_names(categori_cols))
-    input_data[encoded_cols] = encoder.transform(input_data[categori_cols])
-    
-    numeric_cols = input_data.select_dtypes(include=np.number).columns.tolist()
-    categorical_cols = input_data.select_dtypes('category').columns.tolist()
-    
-    input_data = input_data[numeric_cols]
-    
-    return model_name.predict(input_data)
+#algo 2 work
+file2 = "xAPI-Edu-Data.csv"
+df2 = pd.read_csv(file2)
+df2['ParentschoolSatisfaction'].replace(['Bad','Good'],[1, 0],inplace=True)
+features_df2 = df2.drop('ParentschoolSatisfaction', axis='columns')
+sample_data2 = features_df2.sample(1)
+filename2 = 'parent_satisfiction_model.pkl'
+train_model2 = pickle.load(open(filename2, 'rb'))
+del file2
+del df2
+del filename2
 
+
+collect()  # garbage collector
 
 
 def predict_happy_path(input_data, model_name):
@@ -232,7 +232,7 @@ def predict_happy_path(input_data, model_name):
     categori_cols = input_data.columns[input_data.dtypes == "object"].values
     
     encoder = OneHotEncoder(sparse=False, handle_unknown='ignore')
-    encoder.fit(features_df[categori_cols])
+    encoder.fit(features_df1[categori_cols])
     
     encoded_cols = list(encoder.get_feature_names(categori_cols))
     input_data[encoded_cols] = encoder.transform(input_data[categori_cols])
@@ -245,17 +245,25 @@ def predict_happy_path(input_data, model_name):
     return model_name.predict(input_data)
 
 
-def get_parent_satisfaction(student):
-    new_vals = {
-        "gender": student.gender, "NationalITy": student.NationalITy, "PlaceofBirth": student.PlaceofBirth, "StageID": student.StageID, "GradeID": student.GradeID,
-        "SectionID": student.SectionID, "Topic": student.Topic, "Semester": student.Semester, "Relation": student.Relation, "raisedhands": student.raisedhands, "VisITedResources": student.VisITedResources,
-        "AnnouncementsView": student.AnnouncementsView, "Discussion": student.Discussion, "ParentAnsweringSurvey": student.ParentAnsweringSurvey, "StudentAbsenceDays": student.StudentAbsenceDays,
-        "Class": student.Class
-    }   
-    sample_data.append(new_vals, ignore_index=True)
-    answer = predict_parent_satisfaction(sample_data.iloc[-1:], train_model)
+def predict_parent_satisfaction(input_data, model_name):
+    """ Pridict the result based on the input values"""
+    numeric_cols = input_data.columns[input_data.dtypes != "object"].values
+    categori_cols = input_data.columns[input_data.dtypes == "object"].values
+    
+    encoder = OneHotEncoder(sparse=False, handle_unknown='ignore')
+    encoder.fit(features_df2[categori_cols])
+    
+    encoded_cols = list(encoder.get_feature_names(categori_cols))
+    input_data[encoded_cols] = encoder.transform(input_data[categori_cols])
+    
+    numeric_cols = input_data.select_dtypes(include=np.number).columns.tolist()
+    categorical_cols = input_data.select_dtypes('category').columns.tolist()
+    
+    input_data = input_data[numeric_cols]
+    
+    return model_name.predict(input_data)
 
-    return answer
+
 
 def get_happy_path(student):
     new_vals = {
@@ -263,11 +271,23 @@ def get_happy_path(student):
         "Perseverance": student.Perseverance, "DesireToTakeInitiative": student.DesireToTakeInitiative, "Competitiveness": student.Competitiveness, "SelfReliance": student.SelfReliance, "StrongNeedToAchieve": student.StrongNeedToAchieve, "SelfConfidence": student.SelfConfidence,
         "GoodPhysicalHealth": student.GoodPhysicalHealth, "KeyTraits": student.KeyTraits
     }   
-    sample_data.append(new_vals, ignore_index=True)
-    answer = predict_happy_path(sample_data.iloc[-1:], train_model)
-
+    new_sample_data1 = sample_data1.append(new_vals, ignore_index=True)
+    answer = predict_happy_path(new_sample_data1.tail(1), train_model1)
     return answer
 
+
+def get_parent_satisfaction(student):
+    new_vals = {
+        "gender": student.gender, "NationalITy": student.NationalITy, "PlaceofBirth": student.PlaceofBirth, "StageID": student.StageID, "GradeID": student.GradeID,
+        "SectionID": student.SectionID, "Topic": student.Topic, "Semester": student.Semester, "Relation": student.Relation, "raisedhands": student.raisedhands, "VisITedResources": student.VisITedResources,
+        "AnnouncementsView": student.AnnouncementsView, "Discussion": student.Discussion, "ParentAnsweringSurvey": student.ParentAnsweringSurvey, "StudentAbsenceDays": student.StudentAbsenceDays,
+        "Class": student.Class
+    }  
+    new_sample_data2 = sample_data2.append(new_vals, ignore_index=True)
+    # print(sample_data2.isna().any())
+    answer = predict_parent_satisfaction(new_sample_data2.tail(1), train_model2)
+
+    return answer
 
 
 if __name__ == '__main__':
