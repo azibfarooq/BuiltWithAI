@@ -292,4 +292,3 @@ def get_parent_satisfaction(student):
 
 if __name__ == '__main__':
     app.run("0.0.0.0", port=int("8080"), debug=True)
-    
