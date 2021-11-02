@@ -9,6 +9,7 @@ class Student:
         self.predicted_marks = int(round((sum(self.marks.values()) / len(self.marks.values())), 3) + random.randint(-5, 10)) % 100
         self.parent_satisfaction = 5
         self.happy_path = 5
+        self.commitment_score = random.randint(6, 10) 
         
         # For parent satisfation prediction algorithm
         self.gender = gender

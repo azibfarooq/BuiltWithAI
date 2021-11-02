@@ -8,7 +8,7 @@
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+  <title> Neuron Fire - Home </title>
 </head>
 
 <body>
@@ -154,6 +154,7 @@
               <p style="line-height: 1.25rem;">
                 • <u>Self Grade:</u> {{ self_grade }} %<br>
                 • <u>Grade Predictor:</u> {{ predicted_grade }} %<br>
+                • <u>Parent satisfaction score:</u> {{ current_student.parent_satisfaction }} / 10<br>
                 • <u>Course recommendations by AI:</u>
                 {{ ", ".join(recommended_courses[:3]) }}
                 {% if recommended_courses|length > 3 %}
@@ -187,11 +188,12 @@
                 <p> Your grade so far is: <u> {{ self_grade }} %</u> </p> <br>
                 <p> Based on your history, interests and other statistics, we predict your upcoming semester's result to
                   be: <u> {{ predicted_grade }} %</u> </p> <br>
+                <p> Your parent satisfaction score is: <u> {{ current_student.parent_satisfaction }} / 10 </u> </p> <br>
                 <p>
                   Here are the courses that we recommend you focus more on:
                 <ul>
                   {% for course in recommended_courses %}
-                  <li> > {{ course }} </li>
+                  <li> • {{ course }} </li>
                   {% endfor %}
                 </ul>
                 </p>
@@ -213,7 +215,7 @@
               <p class="leading-relaxed text-base leading-loose" style="line-height: 1.25rem;">
                 • <u>All students grades</u><br>
                 • <u>Grades predictions</u><br>
-                • <u>Recommendations based on overall students' performance by AI</u>
+                • <u>Recommendations based on overall students performance by AI</u>
               </p>
               <button class="mt-3 text-indigo-500 inline-flex items-center" data-toggle="modal"
                 data-target="#modal_academic_teacher">
@@ -251,8 +253,11 @@
                   <br>
                   {% endfor %}
                 </p>
-                <h5> <u>Recommendations based on overall students' performance by AI</u> </h5>
-                TODO
+                <h5> <u>Recommendations based on overall students performance by AI</u> </h5>
+                According to our algorithm and based on the overall performance of the class, you should focus more on the following subjects:<br>
+                • Science<br>
+                • Math<br>
+                • Biology
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -309,7 +314,7 @@
             </div>
             <div class="modal-body">
               <p> 
-                Based on peformance and dedication in class, our AI has given you a commitment and discipline score of:  {{ current_student.parent_satisfaction }} / 10<br><br>
+                Based on peformance and dedication in class, our AI has given you a commitment and discipline score of:  {{ current_student.commitment_score }} / 10<br><br>
                 </p>
             </div>
             <div class="modal-footer">

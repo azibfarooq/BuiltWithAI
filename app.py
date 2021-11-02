@@ -40,37 +40,35 @@ current_student = random.choice([Kamran, Andrew, Simon]) # currently logged in s
 
 @app.route("/")
 def index():
-    Kamran = Student("Kamran",  {subject: random.randint(1, 100) for subject in subjects}, "M", "lebanon", "lebanon", "MiddleSchool", "G-08", "A", random.choice(subjects), "F", "Father", 15, 14, 12, 60, random.choice(["Yes", "No"]), random.choice(["Under-7", "Above-7"]), random.choice(["M", "L", "H"]),
-                 random.choice(["Yes", "No"]), "Male", random.randint(17, 26), random.choice(["Yes", "No"]), random.choice(["Yes", "No"]), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), 
-                 random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), "Positivity")
+    # Kamran = Student("Kamran",  {subject: random.randint(1, 100) for subject in subjects}, "M", "lebanon", "lebanon", "MiddleSchool", "G-08", "A", random.choice(subjects), "F", "Father", 15, 14, 12, 60, random.choice(["Yes", "No"]), random.choice(["Under-7", "Above-7"]), random.choice(["M", "L", "H"]),
+    #              random.choice(["Yes", "No"]), "Male", random.randint(17, 26), random.choice(["Yes", "No"]), random.choice(["Yes", "No"]), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), 
+    #              random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), "Positivity")
 
-    Andrew =  Student("Andrew",  {subject: random.randint(1, 100) for subject in subjects}, "M", "Egypt", "Egypt", "MiddleSchool", "G-07", "A", random.choice(subjects), "F", "Father", 8, 10, 20, 90, random.choice(["Yes", "No"]), random.choice(["Under-7", "Above-7"]), random.choice(["M", "L", "H"]),
-                    random.choice(["Yes", "No"]), "Male", random.randint(17, 26), random.choice(["Yes", "No"]), random.choice(["Yes", "No"]), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), 
-                    random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), "Passion")
+    # Andrew =  Student("Andrew",  {subject: random.randint(1, 100) for subject in subjects}, "M", "Egypt", "Egypt", "MiddleSchool", "G-07", "A", random.choice(subjects), "F", "Father", 8, 10, 20, 90, random.choice(["Yes", "No"]), random.choice(["Under-7", "Above-7"]), random.choice(["M", "L", "H"]),
+    #                 random.choice(["Yes", "No"]), "Male", random.randint(17, 26), random.choice(["Yes", "No"]), random.choice(["Yes", "No"]), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), 
+    #                 random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), "Passion")
 
-    Simon =  Student("Simon",  {subject: random.randint(1, 100) for subject in subjects}, "M", "KW", "KuwaIT", "lowerlevel", "G-12", "A", random.choice(subjects), "F", "Mum", 70, 80, 10, 90, random.choice(["Yes", "No"]), random.choice(["Under-7", "Above-7"]), random.choice(["M", "L", "H"]),
-                    random.choice(["Yes", "No"]), "Male", random.randint(17, 26), random.choice(["Yes", "No"]), random.choice(["Yes", "No"]), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), 
-                    random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), "Vision")
-    students = [Kamran, Andrew, Simon]
-    current_student = random.choice([Kamran, Andrew, Simon]) # currently logged in student
+    # Simon =  Student("Simon",  {subject: random.randint(1, 100) for subject in subjects}, "M", "KW", "KuwaIT", "lowerlevel", "G-12", "A", random.choice(subjects), "F", "Mum", 70, 80, 10, 90, random.choice(["Yes", "No"]), random.choice(["Under-7", "Above-7"]), random.choice(["M", "L", "H"]),
+    #                 random.choice(["Yes", "No"]), "Male", random.randint(17, 26), random.choice(["Yes", "No"]), random.choice(["Yes", "No"]), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), 
+    #                 random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), "Vision")
+    # students = [Kamran, Andrew, Simon]
+    # current_student = random.choice([Kamran, Andrew, Simon]) # currently logged in student
 
     for s in students:
         parent_satisfaction = get_parent_satisfaction(s)[0]
         if parent_satisfaction == 0:
-            s.parent_satisfaction = random.randint(1, 5)
+            s.parent_satisfaction = random.randint(3, 5)
         else:
             s.parent_satisfaction = random.randint(6, 10)
-        s.parent_satisfaction = parent_satisfaction
 
         happy_path = get_happy_path(s)[0]
         if happy_path == 0:
-            s.happy_path = random.randint(1, 5)
+            s.happy_path = random.randint(3, 5)
         else:
             s.happy_path = random.randint(6, 10)
-        s.happy_path = happy_path
 
     # print(sample_data)
-    return str([(s.name, s.happy_path, s.parent_satisfaction) for s in students]) + "<br><br>" 
+    # return str([(s.name, s.happy_path, s.parent_satisfaction) for s in students]) + "<br><br>" 
     # return f"Happy path score: {happy_path}, parent_satisfaction: {parent_satisfaction} student = {current_student.name}"
 
     # calculating cgpa for current_student
