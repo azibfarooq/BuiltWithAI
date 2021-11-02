@@ -251,6 +251,10 @@
                   &ensp;<b>Current grade:</b> {{ all_grades[student]["self_grade"] }} <br>
                   &ensp;<b>Future prediction:</b> {{ all_grades[student]["prediction"] }} <br>
                   <br>
+                  {% if student == current_student.name %}
+                  <b>Parent Satisfaction score:</b> {{ current_student.parent_satisfaction }} / 10
+                  {% else %}
+                  <b>Parent Satisfaction:</b> {{ current_student.parent_satisfaction }}
                   {% endfor %}
                 </p>
                 <h5> <u>Recommendations based on overall students performance by AI</u> </h5>
@@ -315,7 +319,8 @@
             <div class="modal-body">
               <p> 
                 Based on peformance and dedication in class, our AI has given you a commitment and discipline score of:  {{ current_student.commitment_score }} / 10<br><br>
-                </p>
+                You seem motivated and dedicated, keep it up!
+              </p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -403,8 +408,8 @@
                 Based on your qualities, traits and lifestyle our AI algorithm has given you a happy path score of:  {{ current_student.happy_path }} / 10<br><br>
                 {% if current_student.happy_path <= 5 %}
                   It seems like you're feeling low. We suggest you try out some of the following applications:<br>
-                  <img id="healthapp1" style="height: 40px; display: inline;" src="https://play-lh.googleusercontent.com/0XA3JWGUYjC66_XVP_5al9U-XOFPA2H8-aitY2Kj9vSIPlLSdpCa0iHESAerRaGHyA=s180-rw" class="img-thumbnail">
-                  <label for="healthapp1">Depression CBT Self-Help Guide</label>
+                  <img id="healthapp1" style="height: 40px; display: inline;" src="https://play-lh.googleusercontent.com/ZAgimOBpVSH0F1ktn2W5R-9npvPJIfwUxKLOCNUeCWxQORRZOYYPp1xkJveRmRwS8Q=s180-rw" class="img-thumbnail">
+                  <label for="healthapp1">Smiling Mind</label>
                   <br>
                   <img id="healthapp2" style="height: 40px; display: inline;" src="https://play-lh.googleusercontent.com/Iyytdx9p8jbCfSRvGBp8_0Nm6wCAHbjhiD8gN-oL9M9qRIGS8F3JC2VsIodTVMeoCTU=s180-rw" class="img-thumbnail">
                   <label for="healthapp2">Insight Timer - Meditation, Sleep</label>
